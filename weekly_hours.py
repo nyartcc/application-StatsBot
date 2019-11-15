@@ -67,15 +67,6 @@ for i in range(week_ago.year, today.year + 1):
 
                 print(cur.rowcount, "records inserted.")
 
-                previous_week_query = "SELECT * FROM `statistics_weekly_hours` WHERE year={} AND month={} AND day={}".format(
-                    i, j, week_ago.day)
-                prev = mydb.cursor()
-                prev.execute(previous_week_query)
-                prev_records = prev.fetchall()
-
-                for row in prev_records:
-                    print("{} - {}".format(row[4], row[5]))
-
             if rc > 0:
 
                 for row in records:
@@ -137,3 +128,12 @@ for i in range(week_ago.year, today.year + 1):
             print("{0}-{1}: Out of range".format(i, j))
 
         mydb.commit()
+
+        previous_week_query = "SELECT * FROM `statistics_weekly_hours` WHERE year={} AND month={} AND day={}".format(
+            i, j, week_ago.day)
+            prev = mydb.cursor()
+            prev.execute(previous_week_query)
+            prev_records = prev.fetchall()
+
+            for row in prev_records:
+                print("{} - {}".format(row[4], row[5]))
