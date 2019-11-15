@@ -136,7 +136,13 @@ for i in range(week_ago.year, today.year + 1):
         prev_records = prev.fetchall()
 
         for row in prev_records:
-            print(*row)
             day = row[3]
-            minutes = row[4]
-            print("{} - {}".format(day, minutes))
+            prev_minutes = round(row[4] / 60 / 60, 0)
+
+        if current_hours > prev_minutes:
+            print("Current is higher")
+        elif current_hours < prev_minutes:
+            print("Previous is higher")
+        else:
+            print("Huh? This seems strange. Both are the same. Current: {} - Previous: {}".format(
+                current_hours, prev_minutes))
