@@ -1,12 +1,12 @@
-import mysql.connector
-import os
-import functools
-import operator
 from dotenv import load_dotenv
-import json
 import requests
 import datetime
 import calendar
+import json
+import operator
+import functools
+import os
+import mysql.connector
 
 
 def convertTuple(tup):
@@ -76,6 +76,49 @@ for i in range(2016, 2020):
                         update_run = cur.execute(update_query)
 
                         print(cur.rowcount, "records updated.")
+
+                        webhook_url = 'https://hooks.slack.com/services/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'
+                        message_data = {
+                            "blocks": [
+                                {
+                                    "type": "section",
+                                    "text": {
+                                            "type": "mrkdwn",
+                                            "text": "*STATISTICS WARNING*:"
+                                    }
+                                },
+                                {
+                                    "type": "section",
+                                    "text": {
+                                            "type": "mrkdwn",
+                                            "text": "*Details*\nThe table 'statistics_hours' was updated with new data. Please verify that the data is correct. If not, use the data below to rectify the issue."
+                                    },
+                                    "accessory": {
+                                        "type": "image",
+                                        "image_url": "https://image.prntscr.com/image/y9FuNIUOQBacBfIJgA0Sgg.png",
+                                        "alt_text": "Statistics Icon"
+                                    }
+                                },
+                                {
+                                    "type": "section",
+                                    "text": {
+                                            "type": "mrkdwn",
+                                            "text": "*Old Data*\n Year: {0}\n Month:{1} \n Minutes:{2} \n\n *New Data*\n Year: {0} \n Month: {1} \n Minutes: {3}".format(i, j, current_hours, hours)
+                                    }
+
+                                }
+                            ]
+                        }
+
+                        response = requests.post(
+                            webhook_url, data=json.dumps(message_data),
+                            headers={'Content-type': 'application/json'}
+                        )
+                        if response.status_code != 200:
+                            raise ValueError(
+                                'Request to Slack returned an error %s, the response is:\n%s'
+                                % (reponse.status_code, response.text)
+                            )
 
         else:
             print("{0}-{1}: Out of range".format(i, j))
