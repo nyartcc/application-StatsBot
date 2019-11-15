@@ -31,7 +31,7 @@ for i in range(2018,2020):
         end_time = datetime.datetime(i,j,days_of_month[1],0,0).timestamp()
 
         mycursor = mydb.cursor()
-        my_query = str("SELECT SUM(duration) FROM connections WHERE logon_time > {0} AND logon_time < {1};").format(start_time, end_time)
+        my_query = "SELECT SUM(duration) FROM connections WHERE logon_time > {0} AND logon_time < {1};".format(start_time, end_time)
         mycursor.execute(my_query)
         hours = convertTuple(mycursor.fetchone())
 
