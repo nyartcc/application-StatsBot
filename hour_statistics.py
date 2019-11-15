@@ -61,14 +61,14 @@ for i in range(2016, 2020):
                     i, j, round(hours, 6))
                 insert_run = cur.execute(insert_query)
 
-                print(insert_run.rowcount, "records inserted.")
+                print(cur.rowcount, "records inserted.")
 
             if rc > 0:
                 update_query = "UPDATE `statistics_hours` SET minutes={0} WHERE year={1} AND month={2};".format(
                     hours, i, j)
                 update_run = cur.execute(update_query)
 
-                print(update_run.rowcount, "updated.")
+                print(cur.rowcount, "updated.")
 
         else:
             print("{0}-{1}: Out of range".format(i, j))
