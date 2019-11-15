@@ -53,14 +53,14 @@ mentor = convertTuple(mycursor.fetchone())
 current_date = datetime.datetime.today()
 weeknumber = current_date.strftime("%U")
 
-webhook_url = 'https://hooks.slack.com/services/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'
+webhook_url = os.GETENV('SLACK_WEBHOOK')
 message_data = {
 	"blocks": [
 		{
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "ZNY Statistics week #{0}".format(weeknumber)
+				"text": "ZNY Statistics: Week #{0}".format(weeknumber)
 			}
 		},
 		{
