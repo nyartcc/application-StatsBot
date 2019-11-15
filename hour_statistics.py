@@ -45,6 +45,8 @@ for i in range(2016, 2020):
             f.write("{}-{},{}\n".format(i, j, hours))
             print("{}-{}: {} -- {}-{}".format(i, j,
                                               round(hours / 60 / 60, 1), start_time, end_time))
+        else:
+            print("Out of range")
 
 
 f.close()
