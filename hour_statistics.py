@@ -68,10 +68,12 @@ for i in range(2016, 2020):
                     hours, i, j)
                 update_run = cur.execute(update_query)
 
-                print(cur.rowcount, "updated.")
+                print(cur.rowcount, "records updated.")
 
         else:
             print("{0}-{1}: Out of range".format(i, j))
+
+        mydb.commit()
 
 
 f.close()
