@@ -30,6 +30,9 @@ mydb = mysql.connector.connect(
 today = datetime.date.today()
 week_ago = today - datetime.timedelta(days=7)
 
+print("Week ago: {}{}".format(week_ago.year, week_ago.month))
+print("Today: {}{}".format(today.year, today.month))
+
 
 for i in range(week_ago.year, today.year + 1):
     for j in range(week_ago.month, today.month + 1):
