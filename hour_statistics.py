@@ -34,7 +34,7 @@ for i in range(2016,2020):
         my_query = "SELECT SUM(duration) FROM connections WHERE logon_time > {} AND logon_time < {};".format(start_time, end_time)
         mycursor.execute(my_query)
         hours = convertTuple(mycursor.fetchone())
-        f.write("{},{},{}".fomat(i,j,hours/60/60))
+        f.write("{},{},{}".format(i,j,hours/60/60))
 
         print("{}-{}: {}".format(i,j,hours/60/60))
 f.close()
