@@ -46,12 +46,12 @@ for i in range(2016, 2020):
             print("{}-{}: {} -- {}-{}".format(i, j,
                                               round(hours / 60 / 60, 1), start_time, end_time))
 
-            check_query = "SELECT * FROM `statistics_hours` WHERE year={0} AND month={1} AND minutes>0".format(
+            check_query = "SELECT * FROM `statistics_hours` WHERE year={0} AND month={1}".format(
                 i, j)
 
             cur = mydb.cursor()
             cur.execute(check_query)
-            cur.fetchall()
+            records = cur.fetchall()
             rc = cur.rowcount
 
             print("Rowcount: {0}".format(rc))
@@ -64,6 +64,11 @@ for i in range(2016, 2020):
                 print(cur.rowcount, "records inserted.")
 
             if rc > 0:
+
+                for row in records:
+                    print("Id: {}, Year: {}, Month: {}, Minutes:{}".format(
+                        row[0], row[1], row[2], row[3],))
+
                 update_query = "UPDATE `statistics_hours` SET minutes={0} WHERE year={1} AND month={2};".format(
                     hours, i, j)
                 update_run = cur.execute(update_query)
