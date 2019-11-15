@@ -142,7 +142,6 @@ for i in range(week_ago.year, today.year + 1):
 
         webhook_url = 'https://hooks.slack.com/services/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'
 
-
         if current_hours > prev_minutes:
             message_data = {
                 "blocks": [
@@ -240,13 +239,12 @@ for i in range(week_ago.year, today.year + 1):
                 ]
             }
 
-
-            response = requests.post(
-                webhook_url, data=json.dumps(message_data),
-                headers={'Content-type': 'application/json'}
+        response = requests.post(
+            webhook_url, data=json.dumps(message_data),
+            headers={'Content-type': 'application/json'}
+        )
+        if response.status_code != 200:
+            raise ValueError(
+                'Request to Slack returned an error %s, the response is:\n%s'
+                % (reponse.status_code, response.text)
             )
-            if response.status_code != 200:
-                raise ValueError(
-                    'Request to Slack returned an error %s, the response is:\n%s'
-                    % (reponse.status_code, response.text)
-                )
