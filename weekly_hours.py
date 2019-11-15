@@ -137,7 +137,7 @@ for i in range(week_ago.year, today.year + 1):
         tc_records = tc.fetchall()
 
         for row in tc_records:
-            tc_hours = row[0]
+            tc_hours = round(row[0] / 60 / 60, 1)
             tc_cid = row[1]
             tc_fname = row[2]
             tc_lname = row[3]
