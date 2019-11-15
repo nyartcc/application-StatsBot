@@ -128,4 +128,3 @@ for i in range(week_ago.year, today.year + 1):
             print("{0}-{1}: Out of range".format(i, j))
 
         mydb.commit()
-weekl
