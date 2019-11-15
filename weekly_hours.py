@@ -139,7 +139,7 @@ for i in range(week_ago.year, today.year + 1):
             tc_hours = row[0]
             tc_cid = row[1]
             tc_fname = row[2]
-            tc_lname = tow[3]
+            tc_lname = row[3]
 
         # Get info about last weeks hours.
         previous_week_query = "SELECT * FROM `statistics_weekly_hours` WHERE year={} AND month={} AND day={}".format(
