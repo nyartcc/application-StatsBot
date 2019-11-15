@@ -137,6 +137,6 @@ for i in range(week_ago.year, today.year + 1):
 
         for row in prev_records:
             print(*row)
-            day = row[4]
-            minutes = row[5]
-            print("{} - {}".format(row[4], row[5]))
+            day = row[3]
+            minutes = row[4]
+            print("{} - {}".format(day, minutes))
