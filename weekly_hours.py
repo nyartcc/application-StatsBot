@@ -46,7 +46,6 @@ for i in range(week_ago.year, today.year + 1):
         hours = convertTuple(mycursor.fetchone())
 
         if (hours != None):
-            f.write("{}-{},{}\n".format(i, j, hours))
             print("{}-{}-{}: {} -- {}-{}".format(i, j, today.day,
                                                  round(hours / 60 / 60, 1), start_time, end_time))
 
