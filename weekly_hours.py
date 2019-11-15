@@ -131,9 +131,9 @@ for i in range(week_ago.year, today.year + 1):
 
         previous_week_query = "SELECT * FROM `statistics_weekly_hours` WHERE year={} AND month={} AND day={}".format(
             i, j, week_ago.day)
-            prev = mydb.cursor()
-            prev.execute(previous_week_query)
-            prev_records = prev.fetchall()
+        prev = mydb.cursor()
+        prev.execute(previous_week_query)
+        prev_records = prev.fetchall()
 
-            for row in prev_records:
-                print("{} - {}".format(row[4], row[5]))
+        for row in prev_records:
+            print("{} - {}".format(row[4], row[5]))
