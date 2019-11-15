@@ -1,14 +1,18 @@
-import mysql.connector, os, functools, operator
+import mysql.connector
+import os
+import functools
+import operator
 from dotenv import load_dotenv
-import json, requests
+import json
+import requests
 import datetime
 import calendar
 
 
-
-def convertTuple(tup): 
-    str = functools.reduce(operator.add, (tup)) 
+def convertTuple(tup):
+    str = functools.reduce(operator.add, (tup))
     return str
+
 
 load_dotenv()
 db_host = os.getenv('DATABASE_HOST')
@@ -23,28 +27,20 @@ mydb = mysql.connector.connect(
     database="nyartcco_nyartcc"
 )
 
-f=open("statistics.csv","w+")
-for i in range(2016,2020):
-    for j in range(1,12):
-        days_of_month = calendar.monthrange(i,j)
-        start_time = datetime.datetime(i,j,1,0,0).timestamp()
-        end_time = datetime.datetime(i,j,days_of_month[1],0,0).timestamp()
+f = open("statistics.csv", "w+")
+for i in range(2016, 2020):
+    for j in range(1, 13):
+        days_of_month = calendar.monthrange(i, j)
+        start_time = datetime.datetime(i, j, 1, 0, 0).timestamp()
+        end_time = datetime.datetime(i, j, days_of_month[1], 0, 0).timestamp()
 
         mycursor = mydb.cursor()
-        my_query = "SELECT SUM(duration) FROM connections WHERE logon_time > {} AND logon_time < {};".format(start_time, end_time)
+        my_query = "SELECT SUM(duration) FROM connections WHERE logon_time > {} AND logon_time < {};".format(
+            start_time, end_time)
         mycursor.execute(my_query)
         hours = convertTuple(mycursor.fetchone())
-        f.write("{},{},{}\n".format(i,j,hours/60/60))
+        f.write("{},{},{}\n".format(i, j, hours / 60 / 60))
 
-        print("{}-{}: {} -- {}-{}".format(i,j,hours/60/60, start_time, end_time))
+        print("{}-{}: {} -- {}-{}".format(i, j,
+                                          hours / 60 / 60, start_time, end_time))
 f.close()
-
-        
-
-
-
-
-
-
-
-
