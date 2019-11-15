@@ -24,7 +24,7 @@ mydb = mysql.connector.connect(
 )
 
 
-for i in range(2015,2020):
+for i in range(2016,2020):
     for j in range(1,12):
         days_of_month = calendar.monthrange(i,j)
         start_time = datetime.datetime(i,j,1,0,0).timestamp()
