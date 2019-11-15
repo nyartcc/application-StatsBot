@@ -53,7 +53,7 @@ mentor = convertTuple(mycursor.fetchone())
 current_date = datetime.datetime.today()
 weeknumber = current_date.strftime("%U")
 
-webhook_url = os.GETENV('SLACK_WEBHOOK')
+webhook_url = os.getenv('SLACK_WEBHOOK')
 message_data = {
 	"blocks": [
 		{
