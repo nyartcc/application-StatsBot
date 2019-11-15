@@ -45,6 +45,21 @@ for i in range(2016, 2020):
             f.write("{}-{},{}\n".format(i, j, hours))
             print("{}-{}: {} -- {}-{}".format(i, j,
                                               round(hours / 60 / 60, 1), start_time, end_time))
+
+            check_query = "SELECT * FROM `statistics_hours` WHERE year={0} AND month={1} AND minutes>0".format(
+                i, j)
+
+            cur = mydb.cursor()
+            cur.execute(check_query)
+            cur.fetchall()
+            rc = cur.rowcount
+
+            print("Rowcount: {0}".format(rc))
+
+            # insert_query = "INSERT INTO `statistics_hours` (`year`, `month`, minutes`) VALUES ({0}, {1}, {2});".format(
+            #    i, j, hours)
+            # insert_run =
+
         else:
             print("{0}-{1}: Out of range".format(i, j))
 
