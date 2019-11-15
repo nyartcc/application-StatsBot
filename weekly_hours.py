@@ -60,7 +60,7 @@ for i in range(week_ago.year, today.year + 1):
 
             if rc == 0:
                 insert_query = "INSERT INTO statistics_weekly_hours (year, month, day, minutes) VALUES ({0},{1},{2},{3});".format(
-                    i, j, today.day round(hours, 6))
+                    i, j, today.day, round(hours, 6))
                 insert_run = cur.execute(insert_query)
 
                 print(cur.rowcount, "records inserted.")
