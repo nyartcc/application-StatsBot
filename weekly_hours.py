@@ -52,8 +52,8 @@ for i in range(week_ago.year, today.year + 1):
             print("{}-{}-{}: {} -- {}-{}".format(i, j, today.day,
                                                  round(hours / 60 / 60, 1), start_time, end_time))
 
-            check_query = "SELECT * FROM `statistics_weekly_hours` WHERE year={0} AND month={1} AND day={2}".format(
-                i, j, today.day)
+            check_query = "SELECT * FROM `statistics_weekly_hours` WHERE year={0} AND month={1} AND day={2} AND minutes={3}".format(
+                i, j, today.day, hours)
 
             cur = mydb.cursor()
             cur.execute(check_query)
@@ -70,7 +70,7 @@ for i in range(week_ago.year, today.year + 1):
             if rc > 0:
 
                 for row in records:
-                    current_hours = row[3]
+                    current_hours = row[4]
                     if current_hours == hours:
                         print("No Update required.")
                     """else:
