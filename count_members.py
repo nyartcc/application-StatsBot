@@ -68,7 +68,7 @@ message_data = {
 			"block_id": "section567",
 			"text": {
 				"type": "mrkdwn",
-				"text": "*Member Data*\n:male-scientist: {0}\tMembers \n :female-scientist: {1}  \tVisitors. \n :man-woman-boy-boy: {2}  \tMembers are marked as LOA.".format(members, visitors, loa)
+				"text": "*Members: *\n:male-scientist: {0}\tMembers \n :female-scientist: {1}  \tVisitors. \n :man-woman-boy-boy: {2}  \tMembers are marked as LOA.".format(members, visitors, loa)
 			},
 			"accessory": {
 				"type": "image",
@@ -81,8 +81,8 @@ message_data = {
 			"block_id": "section789",
 			"fields": [
 				{
-					"type": "mrkdwn",
-					"text": "*Staff Data*\n :guardsman: {0}  \tSenior Staff \n :male_mage: {1}  \tInstructors \n :male-teacher: {2}\tMentors".format(staff, instructor, mentor)
+				    	"type": "mrkdwn",
+					"text": "*Staff: *\n :guardsman: {0}  \tSenior Staff \n :male_mage: {1}  \tInstructors \n :male-teacher: {2}\tMentors".format(staff, instructor, mentor)
 				}
 			]
 		}
