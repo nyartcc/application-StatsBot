@@ -56,14 +56,14 @@ for i in range(2016, 2020):
 
             print("Rowcount: {0}".format(rc))
 
-            if rc = 0:
+            if rc == 0:
                 insert_query = "INSERT INTO `statistics_hours` (`year`, `month`, minutes`) VALUES ({0}, {1}, {2});".format(
                     i, j, hours)
                 insert_run = cur.execute(insert_query)
 
                 print(insert_run.rowcount, "records inserted.")
 
-            if rc = 1:
+            if rc > 0:
                 update_query = "UPDATE `statistics_hours` SET minutes={0} WHERE year={1} AND month={2};".format(
                     hours, i, j)
                 update_run = cur.execute(update_query)
