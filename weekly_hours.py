@@ -139,6 +139,7 @@ for i in range(week_ago.year, today.year + 1):
             day = row[3]
             prev_minutes = round(row[4] / 60 / 60, 0)
 
+        current_hours = rounc(current_hours / 60 / 60, 0)
         if current_hours > prev_minutes:
             print("Current is higher. Current: {} - Previous: {}".format(
                 current_hours, prev_minutes))
