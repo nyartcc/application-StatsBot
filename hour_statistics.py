@@ -40,8 +40,8 @@ for i in range(2016, 2020):
             start_time, end_time)
         mycursor.execute(my_query)
         hours = convertTuple(mycursor.fetchone())
-        f.write("{},{},{}\n".format(i, j, hours / 60 / 60))
+        f.write("{},{},{}\n".format(i, j, hours))
 
         print("{}-{}: {} -- {}-{}".format(i, j,
-                                          hours / 60 / 60, start_time, end_time))
+                                          round(hours / 60 / 60, 1), start_time, end_time))
 f.close()
