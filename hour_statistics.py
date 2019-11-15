@@ -35,7 +35,7 @@ for i in range(2018,2020):
         mycursor.execute(my_query)
         hours = convertTuple(mycursor.fetchone())
 
-        print("{}-{}: {}".format(i,j,hours))
+        print("{}-{}: {}".format(i,j,hours/60/60))
         
 
         
