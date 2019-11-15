@@ -67,7 +67,7 @@ for i in range(2016, 2020):
 
                 for row in records:
                     current_hours = row[3]
-                    if round(current_hours, 0) == hours:
+                    if current_hours == hours:
                         print("No Update required.")
                     else:
 
