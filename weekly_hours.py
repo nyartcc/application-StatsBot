@@ -67,16 +67,25 @@ for i in range(week_ago.year, today.year + 1):
 
                 print(cur.rowcount, "records inserted.")
 
+                previous_week_query = "SELECT * FROM `statistics_weekly_hours` WHERE year={} AND month={} AND day={}".format(
+                    i, j, week_ago.day)
+                prev = mydb.cursor()
+                prev.execute(previous_week_query)
+                prev_records = prev.fetchall()
+
+                for row in prev_records:
+                    print("{} - {}".format(row[4], row[5]))
+
             if rc > 0:
 
                 for row in records:
                     current_hours = row[4]
                     if current_hours == hours:
                         print("No Update required.")
-                    """else:
+                    else:
 
-                        update_query = "UPDATE `statistics_hours` SET minutes={0} WHERE year={1} AND month={2};".format(
-                            hours, i, j)
+                        update_query = "UPDATE `statistics_weekly_hours` SET minutes={0} WHERE year={1} AND month={2} AND day={3};".format(
+                            hours, i, j, today.day)
                         update_run = cur.execute(update_query)
 
                         print(cur.rowcount, "records updated.")
@@ -95,7 +104,7 @@ for i in range(week_ago.year, today.year + 1):
                                     "type": "section",
                                     "text": {
                                             "type": "mrkdwn",
-                                            "text": "*Details*\nThe table 'statistics_hours' was updated with new data. Please verify that the data is correct. If not, use the data below to rectify the issue."
+                                            "text": "*Details*\nThe table 'statistics_weekly_hours' was updated with new data. Please verify that the data is correct. If not, use the data below to rectify the issue."
                                     },
                                     "accessory": {
                                         "type": "image",
@@ -107,7 +116,7 @@ for i in range(week_ago.year, today.year + 1):
                                     "type": "section",
                                     "text": {
                                             "type": "mrkdwn",
-                                            "text": "*Old Data*\n Year: {0}\n Month:{1} \n Minutes:{2} \n\n *New Data*\n Year: {0} \n Month: {1} \n Minutes: {3}".format(i, j, current_hours, hours)
+                                            "text": "*Old Data*\n Year: {0}\n Month:{1} \n Day: {4} Minutes:{2} \n\n *New Data*\n Year: {0} \n Month: {1} \n Minutes: {3}".format(i, j, current_hours, hours, today.day)
                                     }
 
                                 }
