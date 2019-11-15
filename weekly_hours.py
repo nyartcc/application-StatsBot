@@ -140,9 +140,11 @@ for i in range(week_ago.year, today.year + 1):
             prev_minutes = round(row[4] / 60 / 60, 0)
 
         if current_hours > prev_minutes:
-            print("Current is higher")
+            print("Current is higher. Current: {} - Previous: {}".format(
+                current_hours, prev_minutes))
         elif current_hours < prev_minutes:
-            print("Previous is higher")
+            print("Previous is higher. Current: {} - Previous: {}".format(
+                current_hours, prev_minutes))
         else:
             print("Huh? This seems strange. Both are the same. Current: {} - Previous: {}".format(
                 current_hours, prev_minutes))
