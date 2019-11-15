@@ -140,7 +140,7 @@ for i in range(week_ago.year, today.year + 1):
             prev_minutes = round(row[4] / 60 / 60, 1)
         current_hours = round(current_hours / 60 / 60, 1)
 
-        webhook_url = 'https://hooks.slack.com/services/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'
+        webhook_url = os.getenv('SLACK_WEBHOOK_GENERAL')
 
         if current_hours > prev_minutes:
             message_data = {
@@ -156,7 +156,7 @@ for i in range(week_ago.year, today.year + 1):
                         "type": "section",
                         "text": {
                             "type": "mrkdwn",
-                            "text": "*Details*\n*Week of* {0}.{1}.{2} \n Total Controller Hours: {3}. \n _This is UP from the previous week._ \n\n *Previous Week:* \n *Week of:* {4}.{5}.{6} \n Total Controller Hours: {7}".format(today.year, today.month, today.day, current_hours, week_ago.year, week_ago.month, week_ago.day, prev_minutes)
+                            "text": "*Details*\n*Week of:* {0}.{1}.{2} \n Total Controller Hours: {3}. \n _This is UP from the previous week._ \n\n *Previous Week:* \n *Week of:* {4}.{5}.{6} \n Total Controller Hours: {7}".format(today.year, today.month, today.day, current_hours, week_ago.year, week_ago.month, week_ago.day, prev_minutes)
                         },
                         "accessory": {
                             "type": "image",
