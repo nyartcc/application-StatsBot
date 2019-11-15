@@ -130,7 +130,8 @@ for i in range(week_ago.year, today.year + 1):
         mydb.commit()
 
         # Top Controller
-        tc_query = "SELECT SUM(duration)/60/60 AS hours, cid, controllers.fname, controllers.lname FROM connections INNER JOIN controllers USING (cid) WHERE logon_time > {} and logon_time < {} GROUP BY cid ORDER BY hours DESC;".format(start_time, end_time)
+        tc_query = "SELECT SUM(duration) AS hours, cid, controllers.fname, controllers.lname FROM connections INNER JOIN controllers USING (cid) WHERE logon_time > {} and logon_time < {} GROUP BY cid ORDER BY hours ASC;".format(
+            start_time, end_time)
         tc = mydb.cursor()
         tc.execute(tc_query)
         tc_records = tc.fetchall()
