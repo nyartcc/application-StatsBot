@@ -131,7 +131,7 @@ for i in range(week_ago.year, today.year + 1):
                             raise ValueError(
                                 'Request to Slack returned an error %s, the response is:\n%s'
                                 % (reponse.status_code, response.text)
-                            )"""
+                            )
 
         else:
             print("{0}-{1}: Out of range".format(i, j))
