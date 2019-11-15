@@ -156,7 +156,7 @@ for i in range(week_ago.year, today.year + 1):
                         "type": "section",
                         "text": {
                             "type": "mrkdwn",
-                            "text": "*Details*\nWeek of {0}.{1}.{2} \n Total Controller Hours: {3}. \n This is UP from the previous week. \n\n Previous Week: \n Week of: {4}.{5}.{6} \n Total Controller Hours: {7}".format(today.year, today.month, today.day, current_hours, week_ago.year, week_ago.month, week_ago.day, prev_minutes)
+                            "text": "*Details*\n*Week of* {0}.{1}.{2} \n Total Controller Hours: {3}. \n _This is UP from the previous week._ \n\n *Previous Week:* \n *Week of:* {4}.{5}.{6} \n Total Controller Hours: {7}".format(today.year, today.month, today.day, current_hours, week_ago.year, week_ago.month, week_ago.day, prev_minutes)
                         },
                         "accessory": {
                             "type": "image",
@@ -164,14 +164,6 @@ for i in range(week_ago.year, today.year + 1):
                             "alt_text": "Statistics Icon"
                         }
                     },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*Old Data*\n Year: {0}\n Month:{1} \n Day: {4} Minutes:{2} \n\n *New Data*\n Year: {0} \n Month: {1} \n Minutes: {3}".format(i, j, current_hours, hours, today.day)
-                        }
-
-                    }
                 ]
             }
         elif current_hours < prev_minutes:
@@ -196,14 +188,6 @@ for i in range(week_ago.year, today.year + 1):
                             "alt_text": "Statistics Icon"
                         }
                     },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*Old Data*\n Year: {0}\n Month:{1} \n Day: {4} Minutes:{2} \n\n *New Data*\n Year: {0} \n Month: {1} \n Minutes: {3}".format(i, j, current_hours, hours, today.day)
-                        }
-
-                    }
                 ]
             }
         else:
@@ -228,14 +212,6 @@ for i in range(week_ago.year, today.year + 1):
                             "alt_text": "Statistics Icon"
                         }
                     },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*Old Data*\n Year: {0}\n Month:{1} \n Day: {4} Minutes:{2} \n\n *New Data*\n Year: {0} \n Month: {1} \n Minutes: {3}".format(i, j, current_hours, hours, today.day)
-                        }
-
-                    }
                 ]
             }
 
