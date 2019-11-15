@@ -66,14 +66,15 @@ for i in range(2016, 2020):
             if rc > 0:
 
                 for row in records:
-                    print("Id: {}, Year: {}, Month: {}, Minutes:{}".format(
-                        row[0], row[1], row[2], row[3],))
+                    if round(row[3], 0) == round(hours):
+                        print("No Update required.")
+                    else:
 
-                update_query = "UPDATE `statistics_hours` SET minutes={0} WHERE year={1} AND month={2};".format(
-                    hours, i, j)
-                update_run = cur.execute(update_query)
+                        update_query = "UPDATE `statistics_hours` SET minutes={0} WHERE year={1} AND month={2};".format(
+                            hours, i, j)
+                        update_run = cur.execute(update_query)
 
-                print(cur.rowcount, "records updated.")
+                        print(cur.rowcount, "records updated.")
 
         else:
             print("{0}-{1}: Out of range".format(i, j))
