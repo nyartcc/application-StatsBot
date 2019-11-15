@@ -28,6 +28,7 @@ mydb = mysql.connector.connect(
 )
 
 today = datetime.date.today()
+today = today - datetime.timedelta(days=7)
 week_ago = today - datetime.timedelta(days=7)
 
 print("Week ago: {}{}".format(week_ago.year, week_ago.month))
