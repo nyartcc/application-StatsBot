@@ -36,7 +36,7 @@ for i in range(2016,2020):
         hours = convertTuple(mycursor.fetchone())
         f.write("{},{},{}\n".format(i,j,hours/60/60))
 
-        print("{}-{}: {}".format(i,j,hours/60/60))
+        print("{}-{}: {} -- {}-{}".format(i,j,hours/60/60, start_time, end_time))
 f.close()
 
         
