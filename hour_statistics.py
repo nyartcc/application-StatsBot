@@ -57,8 +57,8 @@ for i in range(2016, 2020):
             print("Rowcount: {0}".format(rc))
 
             if rc == 0:
-                insert_query = "INSERT INTO `statistics_hours` (`year`, `month`, minutes`) VALUES ({0}, {1}, {2});".format(
-                    i, j, hours)
+                insert_query = "INSERT INTO statistics_hours (year, month, minutes) VALUES ({0},{1},{2});".format(
+                    i, j, round(hours, 6))
                 insert_run = cur.execute(insert_query)
 
                 print(insert_run.rowcount, "records inserted.")
