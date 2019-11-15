@@ -49,7 +49,7 @@ for i in range(week_ago.year, today.year + 1):
             print("{}-{}-{}: {} -- {}-{}".format(i, j, today.day,
                                                  round(hours / 60 / 60, 1), start_time, end_time))
 
-            check_query = "SELECT * FROM `statistics_hours` WHERE year={0} AND month={1} AND day={2}".format(
+            check_query = "SELECT * FROM `statistics_weekly_hours` WHERE year={0} AND month={1} AND day={2}".format(
                 i, j, today.day)
 
             cur = mydb.cursor()
@@ -125,6 +125,4 @@ for i in range(week_ago.year, today.year + 1):
             print("{0}-{1}: Out of range".format(i, j))
 
         mydb.commit()
-
-
-f.close()
+weekl
