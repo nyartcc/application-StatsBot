@@ -84,7 +84,7 @@ for i in range(2016, 2020):
                                     "type": "section",
                                     "text": {
                                             "type": "mrkdwn",
-                                            "text": "*STATISTICS WARNING*:"
+                                            "text": "@channel \n *STATISTICS WARNING*:"
                                     }
                                 },
                                 {
