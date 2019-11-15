@@ -41,6 +41,7 @@ for i in range(2016, 2020):
         run = mycursor.execute(my_query)
         hours = convertTuple(mycursor.fetchone())
 
+        print(hours)
         if (hours > 0):
             f.write("{}-{},{}\n".format(i, j, hours))
             print("{}-{}: {} -- {}-{}".format(i, j,
