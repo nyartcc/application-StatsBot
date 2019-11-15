@@ -129,6 +129,19 @@ for i in range(week_ago.year, today.year + 1):
 
         mydb.commit()
 
+        # Top Controller
+        tc_query = "SELECT SUM(duration)/60/60 AS hours, cid, controllers.fname, controllers.lname FROM connections INNER JOIN controllers USING (cid) WHERE logon_time > {} and logon_time < {} GROUP BY cid ORDER BY hours DESC;".format(start_time, end_time)
+        tc = mydb.cursor()
+        tc.execute(tc_query)
+        tc_records = tc.fetchall()
+
+        for row in tc_records:
+            tc_hours = row[0]
+            tc_cid = row[1]
+            tc_fname = row[2]
+            tc_lname = tow[3]
+
+        # Get info about last weeks hours.
         previous_week_query = "SELECT * FROM `statistics_weekly_hours` WHERE year={} AND month={} AND day={}".format(
             i, j, week_ago.day)
         prev = mydb.cursor()
@@ -140,7 +153,7 @@ for i in range(week_ago.year, today.year + 1):
             prev_minutes = round(row[4] / 60 / 60, 1)
         current_hours = round(current_hours / 60 / 60, 1)
 
-        webhook_url = os.getenv('SLACK_WEBHOOK_GENERAL')
+        webhook_url = 'https://hooks.slack.com/services/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' #os.getenv('SLACK_WEBHOOK_GENERAL')
 
         if current_hours > prev_minutes:
             message_data = {
@@ -164,6 +177,13 @@ for i in range(week_ago.year, today.year + 1):
                             "alt_text": "Statistics Icon"
                         }
                     },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*This Weeks Top Controller*\n {0} {1} - CID: {2} with {3} hours! Congratulations!".format(tc_fname, tc_lname, tc_cid, tc_hours)
+                        }
+                    }
                 ]
             }
         elif current_hours < prev_minutes:
@@ -188,6 +208,13 @@ for i in range(week_ago.year, today.year + 1):
                             "alt_text": "Statistics Icon"
                         }
                     },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*This Weeks Top Controller*\n {0} {1} - CID: {2} with {3} hours! Congratulations!".format(tc_fname, tc_lname, tc_cid, tc_hours)
+                        }
+                    }
                 ]
             }
         else:
@@ -212,6 +239,13 @@ for i in range(week_ago.year, today.year + 1):
                             "alt_text": "Statistics Icon"
                         }
                     },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*This Weeks Top Controller*\n {0} {1} - CID: {2} with {3} hours! Congratulations!".format(tc_fname, tc_lname, tc_cid, tc_hours)
+                        }
+                    }
                 ]
             }
 
