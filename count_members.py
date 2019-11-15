@@ -24,12 +24,6 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("SELECT COUNT(project_id) FROM projects WHERE project_status='Active'")
-active_projects = convertTuple(mycursor.fetchone())
-
-mycursor.execute("SELECT COUNT(project_id) FROM projects WHERE project_status='Closed'")
-closed_projects = convertTuple(mycursor.fetchone())
-
 # Members
 mycursor.execute("SELECT COUNT(cid) FROM controllers WHERE status = 1;")
 members = convertTuple(mycursor.fetchone())
