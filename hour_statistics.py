@@ -28,6 +28,7 @@ mydb = mysql.connector.connect(
 )
 
 f = open("statistics.csv", "w+")
+f.write("year,month,hours\n")
 for i in range(2016, 2020):
     for j in range(1, 13):
         days_of_month = calendar.monthrange(i, j)
