@@ -122,6 +122,3 @@ for i in range(2016, 2020):
             print("{0}-{1}: Out of range".format(i, j))
 
         mydb.commit()
-
-
-f.close()
