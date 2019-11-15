@@ -19,8 +19,7 @@ mydb = mysql.connector.connect(
     host=db_host,
     user=db_user,
     passwd=db_pass,
-    database="projects",
-    auth_plugin="mysql_native_password"
+    database="nyartcc_nyartcco"
 )
 
 mycursor = mydb.cursor()
