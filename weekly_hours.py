@@ -187,13 +187,13 @@ for i in range(week_ago.year, today.year + 1):
 
         for row in prev_records:
             day = row[3]
-            prev_minutes = round(row[4] / 60 / 60, 1)
+            previous_minutes = round(row[4] / 60 / 60, 1)
         current_hours = round(current_hours / 60 / 60, 1)
 
         webhook_url = os.getenv('SLACK_WEBHOOK_GENERAL')
 
         # This is a super dirty hack. I'm sorry. Check for the number of hours, and send a different message depending on what the results are.
-        if current_hours > prev_minutes:
+        if current_hours > previous_minutes:
             message_data = {
                 "blocks": [
                     {
