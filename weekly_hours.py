@@ -289,15 +289,15 @@ for i in range(week_ago.year, today.year + 1):
                     ]
                 }
 
-            # response = requests.post(
-            #    webhook_url, data=json.dumps(message_data),
-            #    headers={'Content-type': 'application/json'}
-            #)
-            # if response.status_code != 200:
-            #    raise ValueError(
-            #        'Request to Slack returned an error %s, the response is:\n%s'
-            #        % (reponse.status_code, response.text)
-            #    )
+            response = requests.post(
+                webhook_url, data=json.dumps(message_data),
+                headers={'Content-type': 'application/json'}
+            )
+            if response.status_code != 200:
+                raise ValueError(
+                    'Request to Slack returned an error %s, the response is:\n%s'
+                    % (reponse.status_code, response.text)
+                )
 
             # Post fun stuff to Discord
 webhook = DiscordWebhook(url=discord_webhook)
