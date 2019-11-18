@@ -4,7 +4,6 @@ import datetime
 import calendar
 import json
 import operator
-import functools
 import os
 import mysql.connector
 from tools import convertTuple
