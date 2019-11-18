@@ -1,4 +1,5 @@
 import functools
+import operator
 
 
 def convertTuple(tup):
