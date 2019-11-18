@@ -304,7 +304,7 @@ webhook = DiscordWebhook(url=discord_webhook)
 
 # create embed object for webhook
 embed = DiscordEmbed(title='Weekly Statistics',
-                     description='Lorem ipsum dolor sit', color=242424)
+                     description='Statustics for the week of {}.{}.{}'.format(today.year, today.month, today.day), color=242424)
 
 # set image
 embed.set_thumbnail(
