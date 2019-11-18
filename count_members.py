@@ -13,12 +13,11 @@ load_dotenv()
 db_host = os.getenv('DATABASE_HOST')
 db_user = os.getenv('DATABASE_USER')
 db_pass = os.getenv('DATABASE_PASSWORD')
+webhook_url = os.getenv('SLACK_WEBHOOK_GENERAL')
 
 # Get some date information that will be needed later.
 current_date = datetime.datetime.today()
 weeknumber = current_date.strftime("%U")
-
-
 
 
 # Establish a connection to the MySQL Database using the .env variables.
@@ -62,7 +61,6 @@ mycursor.execute(
 mentor = convertTuple(mycursor.fetchone())
 
 # Send the data to Slack
-webhook_url = os.getenv('SLACK_WEBHOOK_GENERAL')
 message_data = {
     "blocks": [
         {
