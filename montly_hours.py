@@ -112,6 +112,7 @@ for i in range(2016, current_year + 1):
 
                         # After updating the number of hours, send an alert message to staff in Slack notifying staff that the statistics have changed. Someone should probably look at it.
 
+                        notify_users = ['@kmoberg']
                         webhook_url = 'https://hooks.slack.com/services/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'
                         message_data = {
                             "blocks": [
@@ -119,7 +120,7 @@ for i in range(2016, current_year + 1):
                                     "type": "section",
                                     "text": {
                                             "type": "mrkdwn",
-                                            "text": "@channel \n *STATISTICS WARNING*:"
+                                            "text": "@kmoberg \n *STATISTICS WARNING*:"
                                     }
                                 },
                                 {
