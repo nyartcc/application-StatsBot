@@ -16,7 +16,7 @@ db_host = os.getenv('DATABASE_HOST')
 db_user = os.getenv('DATABASE_USER')
 db_pass = os.getenv('DATABASE_PASSWORD')
 webhook_url = os.getenv('SLACK_WEBHOOK_GENERAL')
-discord_webhook = os.getenv('DISCORD_WEBHOOK_STAFF')
+discord_webhook = os.getenv('DISCORD_WEBHOOK_GENERAL')
 
 # Establish a connection to the MySQL Database using the .env variables.
 mydb = mysql.connector.connect(
@@ -33,6 +33,8 @@ week_ago = today - datetime.timedelta(days=7)
 # Used for debugging to get the different dates.
 print("Week ago: {}{}".format(week_ago.year, week_ago.month))
 print("Today: {}{}".format(today.year, today.month))
+current_hours = 0
+prev_minutes = 0
 
 # Generate a 7-day date range, beginning with the year.
 for i in range(week_ago.year, today.year + 1):
@@ -189,11 +191,9 @@ for i in range(week_ago.year, today.year + 1):
             day = row[3]
             previous_minutes = row[4]
             current_hours = round(current_hours / 60 / 60, 1)
-
             prev_minutes = round(previous_minutes / 60 / 60, 1)
 
             webhook_url = os.getenv('SLACK_WEBHOOK_GENERAL')
-
             # This is a super dirty hack. I'm sorry. Check for the number of hours, and send a different message depending on what the results are.
             if current_hours > prev_minutes:
                 message_data = {
@@ -300,24 +300,26 @@ for i in range(week_ago.year, today.year + 1):
             #    )
 
             # Post fun stuff to Discord
-            webhook = DiscordWebhook(url=discord_webhook)
+webhook = DiscordWebhook(url=discord_webhook)
 
-            # create embed object for webhook
-            embed = DiscordEmbed(title='Weekly Statistics',
-                                 description='Lorem ipsum dolor sit', color=242424)
+# create embed object for webhook
+embed = DiscordEmbed(title='Weekly Statistics',
+                     description='Lorem ipsum dolor sit', color=242424)
 
-            # set image
-            embed.set_thumbnail(
-                url='https://image.prntscr.com/image/mTFpZeXOR8_lGUTO8gVg-Q.png')
+# set image
+embed.set_thumbnail(
+    url='https://image.prntscr.com/image/mTFpZeXOR8_lGUTO8gVg-Q.png')
 
-            embed.add_embed_field(name='This Weeks Hours',
-                                  value='{}'.format(current_hours))
-            embed.add_embed_field(name='Last Weeks Hours',
-                                  value='{}'.format(prev_minutes))
+current_hours = round(current_hours / 60 / 60, 1)
 
-            embed2 DiscordEmbed(title='This weeks top controller', description="{0} {1} - CID: {2} with {3} hours! Congratulations!".format(tc_fname, tc_lname, tc_cid, tc_hours))
+embed.add_embed_field(name='This Weeks Hours',
+                      value='{}'.format(current_hours))
+embed.add_embed_field(name='Last Weeks Hours',
+                      value='{}'.format(prev_minutes))
+embed2 = DiscordEmbed(title='This weeks top controller:',
+                      description='{0} {1} - CID: {2} with {3} hours! Congratulations!'.format(tc_fname, tc_lname, tc_cid, tc_hours), color=242424)
 
-            # add embed object to webhook
-            webhook.add_embed(embed, embed2)
-
-            webhook.execute()
+# add embed object to webhook
+webhook.add_embed(embed)
+webhook.add_embed(embed2)
+webhook.execute()
