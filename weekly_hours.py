@@ -305,8 +305,15 @@ for i in range(week_ago.year, today.year + 1):
 webhook = DiscordWebhook(url=discord_webhook)
 
 # create embed object for webhook
-embed = DiscordEmbed(title='Test MEssage',
+embed = DiscordEmbed(title='Weekly Statistics',
                      description='Lorem ipsum dolor sit', color=242424)
+
+# set image
+embed.set_image(
+    url='https://image.prntscr.com/image/mTFpZeXOR8_lGUTO8gVg-Q.png')
+
+embed.add_embed_field(name='Field 1', value='Lorem ipsum')
+embed.add_embed_field(name='Field 2', value='dolor sit')
 
 # add embed object to webhook
 webhook.add_embed(embed)
