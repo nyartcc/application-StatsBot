@@ -13,6 +13,8 @@ load_dotenv()
 db_host = os.getenv('DATABASE_HOST')
 db_user = os.getenv('DATABASE_USER')
 db_pass = os.getenv('DATABASE_PASSWORD')
+webhook_url = os.getenv('SLACK_WEBHOOK_SENIOR_STAFF')
+
 
 # Establish a connection to the MySQL Database using the .env variables.
 mydb = mysql.connector.connect(
@@ -113,7 +115,6 @@ for i in range(2016, current_year + 1):
                         # After updating the number of hours, send an alert message to staff in Slack notifying staff that the statistics have changed. Someone should probably look at it.
 
                         notify_users = ['@kmoberg']
-                        webhook_url = 'https://hooks.slack.com/services/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'
                         message_data = {
                             "blocks": [
                                 {

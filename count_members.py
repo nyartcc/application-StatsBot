@@ -8,16 +8,20 @@ import requests
 import datetime
 from tools import convertTuple
 
-#
-current_date = datetime.datetime.today()
-weeknumber = current_date.strftime("%U")
-
-
+# Load the database variables from the .env file.
 load_dotenv()
 db_host = os.getenv('DATABASE_HOST')
 db_user = os.getenv('DATABASE_USER')
 db_pass = os.getenv('DATABASE_PASSWORD')
 
+# Get some date information that will be needed later.
+current_date = datetime.datetime.today()
+weeknumber = current_date.strftime("%U")
+
+
+
+
+# Establish a connection to the MySQL Database using the .env variables.
 mydb = mysql.connector.connect(
     host=db_host,
     user=db_user,
@@ -25,8 +29,10 @@ mydb = mysql.connector.connect(
     database="nyartcco_nyartcc"
 )
 
+# Create a MySQL Connection
 mycursor = mydb.cursor()
 
+# Get a bunch of data about the different users. Count number of controllers, visitors, members on LOA etc.
 # Members
 mycursor.execute("SELECT COUNT(cid) FROM controllers WHERE status = 1;")
 members = convertTuple(mycursor.fetchone())
@@ -55,11 +61,8 @@ mycursor.execute(
     "SELECT COUNT(cid) FROM controllers WHERE status < 3 AND instructor = 1;")
 mentor = convertTuple(mycursor.fetchone())
 
-
-current_date = datetime.datetime.today()
-weeknumber = current_date.strftime("%U")
-
-webhook_url = os.getenv('SLACK_WEBHOOK')
+# Send the data to Slack
+webhook_url = os.getenv('SLACK_WEBHOOK_GENERAL')
 message_data = {
     "blocks": [
         {
