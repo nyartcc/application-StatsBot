@@ -299,23 +299,25 @@ for i in range(week_ago.year, today.year + 1):
             #        % (reponse.status_code, response.text)
             #    )
 
-# Post fun stuff to Discord
+            # Post fun stuff to Discord
+            webhook = DiscordWebhook(url=discord_webhook)
 
+            # create embed object for webhook
+            embed = DiscordEmbed(title='Weekly Statistics',
+                                 description='Lorem ipsum dolor sit', color=242424)
 
-webhook = DiscordWebhook(url=discord_webhook)
+            # set image
+            embed.set_thumbnail(
+                url='https://image.prntscr.com/image/mTFpZeXOR8_lGUTO8gVg-Q.png')
 
-# create embed object for webhook
-embed = DiscordEmbed(title='Weekly Statistics',
-                     description='Lorem ipsum dolor sit', color=242424)
+            embed.add_embed_field(name='This Weeks Hours',
+                                  value='{}'.format(current_hours))
+            embed.add_embed_field(name='Last Weeks Hours',
+                                  value='{}'.format(prev_minutes))
 
-# set image
-embed.set_image(
-    url='https://image.prntscr.com/image/mTFpZeXOR8_lGUTO8gVg-Q.png')
+            embed2 DiscordEmbed(title='This weeks top controller', description='{0} {1} - CID: {2} with {3} hours! Congratulations!'.format(tc_fname, tc_lname, tc_cid, tc_hours))
 
-embed.add_embed_field(name='Field 1', value='Lorem ipsum')
-embed.add_embed_field(name='Field 2', value='dolor sit')
+            # add embed object to webhook
+            webhook.add_embed(embed, embed2)
 
-# add embed object to webhook
-webhook.add_embed(embed)
-
-webhook.execute()
+            webhook.execute()
