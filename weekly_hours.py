@@ -315,7 +315,7 @@ for i in range(week_ago.year, today.year + 1):
             embed.add_embed_field(name='Last Weeks Hours',
                                   value='{}'.format(prev_minutes))
 
-            embed2 DiscordEmbed(title='This weeks top controller', description='{0} {1} - CID: {2} with {3} hours! Congratulations!'.format(tc_fname, tc_lname, tc_cid, tc_hours))
+            embed2 DiscordEmbed(title='This weeks top controller', description="{0} {1} - CID: {2} with {3} hours! Congratulations!".format(tc_fname, tc_lname, tc_cid, tc_hours))
 
             # add embed object to webhook
             webhook.add_embed(embed, embed2)
