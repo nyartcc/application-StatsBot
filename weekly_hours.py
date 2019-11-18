@@ -92,7 +92,7 @@ for i in range(week_ago.year, today.year + 1):
 
                 # If the result in the DB is the exact same, no worries. No update is required.
                 for row in records:
-                    current_hours = row[4]
+                    global current_hours = row[4]
                     if current_hours == hours:
                         print("No Update required.")
 
