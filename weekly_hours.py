@@ -188,116 +188,116 @@ for i in range(week_ago.year, today.year + 1):
         for row in prev_records:
             day = row[3]
             previous_minutes = row[4]
-        current_hours = round(current_hours / 60 / 60, 1)
+            current_hours = round(current_hours / 60 / 60, 1)
 
-        prev_minutes = round(previous_minutes / 60 / 60, 1)
+            prev_minutes = round(previous_minutes / 60 / 60, 1)
 
-        webhook_url = os.getenv('SLACK_WEBHOOK_GENERAL')
+            webhook_url = os.getenv('SLACK_WEBHOOK_GENERAL')
 
-        # This is a super dirty hack. I'm sorry. Check for the number of hours, and send a different message depending on what the results are.
-        if current_hours > prev_minutes:
-            message_data = {
-                "blocks": [
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*Weekly Controller Hours:*"
-                        }
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*Details*\n*Week of:* {0}.{1}.{2} \n Total Controller Hours: {3}. \n _This is UP from the previous week._ \n\n *Previous Week:* \n *Week of:* {4}.{5}.{6} \n Total Controller Hours: {7}".format(today.year, today.month, today.day, current_hours, week_ago.year, week_ago.month, week_ago.day, prev_minutes)
+            # This is a super dirty hack. I'm sorry. Check for the number of hours, and send a different message depending on what the results are.
+            if current_hours > prev_minutes:
+                message_data = {
+                    "blocks": [
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Weekly Controller Hours:*"
+                            }
                         },
-                        "accessory": {
-                            "type": "image",
-                            "image_url": "https://image.prntscr.com/image/mTFpZeXOR8_lGUTO8gVg-Q.png",
-                            "alt_text": "Statistics Icon"
-                        }
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*This Weeks Top Controller*\n {0} {1} - CID: {2} with {3} hours! Congratulations!".format(tc_fname, tc_lname, tc_cid, tc_hours)
-                        }
-                    }
-                ]
-            }
-        elif current_hours < prev_minutes:
-            message_data = {
-                "blocks": [
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*Weekly Controller Hours:*"
-                        }
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*Details*\nWeek of {0}.{1}.{2} \n Total Controller Hours: {3}. \n This is DOWN from the previous week. \n\n Previous Week: \n Week of: {4}.{5}.{6} \n Total Controller Hours: {7}".format(today.year, today.month, today.day, current_hours, week_ago.year, week_ago.month, week_ago.day, prev_minutes)
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Details*\n*Week of:* {0}.{1}.{2} \n Total Controller Hours: {3}. \n _This is UP from the previous week._ \n\n *Previous Week:* \n *Week of:* {4}.{5}.{6} \n Total Controller Hours: {7}".format(today.year, today.month, today.day, current_hours, week_ago.year, week_ago.month, week_ago.day, prev_minutes)
+                            },
+                            "accessory": {
+                                "type": "image",
+                                "image_url": "https://image.prntscr.com/image/mTFpZeXOR8_lGUTO8gVg-Q.png",
+                                "alt_text": "Statistics Icon"
+                            }
                         },
-                        "accessory": {
-                            "type": "image",
-                            "image_url": "https://image.prntscr.com/image/mTFpZeXOR8_lGUTO8gVg-Q.png",
-                            "alt_text": "Statistics Icon"
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*This Weeks Top Controller*\n {0} {1} - CID: {2} with {3} hours! Congratulations!".format(tc_fname, tc_lname, tc_cid, tc_hours)
+                            }
                         }
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*This Weeks Top Controller*\n {0} {1} - CID: {2} with {3} hours! Congratulations!".format(tc_fname, tc_lname, tc_cid, tc_hours)
-                        }
-                    }
-                ]
-            }
-        else:
-            message_data = {
-                "blocks": [
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*Weekly Controller Hours:*"
-                        }
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*Details*\nWeek of {0}.{1}.{2} \n Total Controller Hours: {3}. \n This is the same from the previous week, or something went horribly wrong. Someone should _probably_ take a look at it. No rush. \n\n Previous Week: \n Week of: {4}.{5}.{6} \n Total Controller Hours: {7}".format(today.year, today.month, today.day, current_hours, week_ago.year, week_ago.month, week_ago.day, prev_minutes)
+                    ]
+                }
+            elif current_hours < prev_minutes:
+                message_data = {
+                    "blocks": [
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Weekly Controller Hours:*"
+                            }
                         },
-                        "accessory": {
-                            "type": "image",
-                            "image_url": "https://image.prntscr.com/image/mTFpZeXOR8_lGUTO8gVg-Q.png",
-                            "alt_text": "Statistics Icon"
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Details*\nWeek of {0}.{1}.{2} \n Total Controller Hours: {3}. \n This is DOWN from the previous week. \n\n Previous Week: \n Week of: {4}.{5}.{6} \n Total Controller Hours: {7}".format(today.year, today.month, today.day, current_hours, week_ago.year, week_ago.month, week_ago.day, prev_minutes)
+                            },
+                            "accessory": {
+                                "type": "image",
+                                "image_url": "https://image.prntscr.com/image/mTFpZeXOR8_lGUTO8gVg-Q.png",
+                                "alt_text": "Statistics Icon"
+                            }
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*This Weeks Top Controller*\n {0} {1} - CID: {2} with {3} hours! Congratulations!".format(tc_fname, tc_lname, tc_cid, tc_hours)
+                            }
                         }
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*This Weeks Top Controller*\n {0} {1} - CID: {2} with {3} hours! Congratulations!".format(tc_fname, tc_lname, tc_cid, tc_hours)
+                    ]
+                }
+            else:
+                message_data = {
+                    "blocks": [
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Weekly Controller Hours:*"
+                            }
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Details*\nWeek of {0}.{1}.{2} \n Total Controller Hours: {3}. \n This is the same from the previous week, or something went horribly wrong. Someone should _probably_ take a look at it. No rush. \n\n Previous Week: \n Week of: {4}.{5}.{6} \n Total Controller Hours: {7}".format(today.year, today.month, today.day, current_hours, week_ago.year, week_ago.month, week_ago.day, prev_minutes)
+                            },
+                            "accessory": {
+                                "type": "image",
+                                "image_url": "https://image.prntscr.com/image/mTFpZeXOR8_lGUTO8gVg-Q.png",
+                                "alt_text": "Statistics Icon"
+                            }
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*This Weeks Top Controller*\n {0} {1} - CID: {2} with {3} hours! Congratulations!".format(tc_fname, tc_lname, tc_cid, tc_hours)
+                            }
                         }
-                    }
-                ]
-            }
+                    ]
+                }
 
-        # response = requests.post(
-        #    webhook_url, data=json.dumps(message_data),
-        #    headers={'Content-type': 'application/json'}
-        #)
-        # if response.status_code != 200:
-        #    raise ValueError(
-        #        'Request to Slack returned an error %s, the response is:\n%s'
-        #        % (reponse.status_code, response.text)
-        #    )
+            # response = requests.post(
+            #    webhook_url, data=json.dumps(message_data),
+            #    headers={'Content-type': 'application/json'}
+            #)
+            # if response.status_code != 200:
+            #    raise ValueError(
+            #        'Request to Slack returned an error %s, the response is:\n%s'
+            #        % (reponse.status_code, response.text)
+            #    )
 
 # Post fun stuff to Discord
 
