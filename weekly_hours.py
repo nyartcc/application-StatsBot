@@ -23,11 +23,7 @@ mydb = mysql.connector.connect(
     host=db_host,
     user=db_user,
     passwd=db_pass,
-<<<<<<< HEAD
-    database="nyartcco_nyartcc"
-=======
     database="nyartcco_nyartcc"  # Change this to the appropriate database.
->>>>>>> 77e2ff35490b2d47e3a198238a77f05bf238cbc4
 )
 
 # Get some date information that will be needed later.
@@ -303,32 +299,6 @@ for i in range(week_ago.year, today.year + 1):
                     % (reponse.status_code, response.text)
                 )
 
-<<<<<<< HEAD
-            # Post fun stuff to Discord
-webhook = DiscordWebhook(url=discord_webhook)
-
-# create embed object for webhook
-embed = DiscordEmbed(title='Weekly Statistics',
-                     description='Statustics for the week of {}.{}.{}'.format(today.year, today.month, today.day), color=242424)
-
-# set image
-embed.set_thumbnail(
-    url='https://image.prntscr.com/image/mTFpZeXOR8_lGUTO8gVg-Q.png')
-
-current_hours = round(current_hours / 60 / 60, 1)
-
-embed.add_embed_field(name='This Weeks Hours',
-                      value='{}'.format(current_hours))
-embed.add_embed_field(name='Last Weeks Hours',
-                      value='{}'.format(prev_minutes))
-embed2 = DiscordEmbed(title='This weeks top controller:',
-                      description='{0} {1} - CID: {2} with {3} hours! Congratulations!'.format(tc_fname, tc_lname, tc_cid, tc_hours), color=242424)
-
-# add embed object to webhook
-webhook.add_embed(embed)
-webhook.add_embed(embed2)
-webhook.execute()
-=======
         # Post fun stuff to Discord
         webhook = DiscordWebhook(url=discord_webhook)
 
@@ -353,4 +323,3 @@ webhook.execute()
         webhook.add_embed(embed)
         webhook.add_embed(embed2)
         webhook.execute()
->>>>>>> 77e2ff35490b2d47e3a198238a77f05bf238cbc4
