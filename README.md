@@ -1,5 +1,5 @@
 # vNew York ARTCC - Statsbot
-A many-armed bot to publish stats from the database to Slack and satistics tables.
+A many-armed bot to publish stats from the database to Slack and statistics tables.
 
 ## Count Members
 This script counts members, visitors and LOA members and publish them to Slack once per week.
