@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 requests
 python-dotenv
 mysql-connector-python
+=======
+mysql-connector-python==8.0.18
+python-dotenv==0.10.3
+requests==2.22.0
+>>>>>>> 77e2ff35490b2d47e3a198238a77f05bf238cbc4
