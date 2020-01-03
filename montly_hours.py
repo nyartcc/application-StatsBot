@@ -36,7 +36,10 @@ current_month = now.month
 # Generate a range from 2016 which is the earliest good dataset in the db, to the current year + 1.
 for i in range(2016, current_year + 1):
     # Get all the months.
-    for j in range(1, current_month + 1):
+    for j in range(1, 13):
+
+        if i == current_year and j > current_month:
+            break
 
         # The data in the database is stored in epoch (unix) time, so we need to convert it to a timestamp in order to make it searchable. Begin by figuring out how many days is in the month in question. Returns as {weekday, number of days}.
         days_of_month = calendar.monthrange(i, j)
