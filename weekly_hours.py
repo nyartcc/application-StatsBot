@@ -38,9 +38,11 @@ prev_minutes = 0
 
 # Generate a 7-day date range, beginning with the year.
 for i in range(week_ago.year, today.year + 1):
+    print("I: {}".format(i))
 
     # Then the month
     for j in range(week_ago.month, today.month + 1):
+        print("j: {}".format(j))
 
         # Finally convert the time to epoch (unix) time as this is what is stored in the db.
         start_time = datetime.datetime(
@@ -299,5 +301,5 @@ for i in range(week_ago.year, today.year + 1):
                     % (reponse.status_code, response.text)
                 )
 
-            post_to_discord(last_week_hours, this_week_hours,
+            post_to_discord(prev_minutes, current_hours,
                             tc_fname, tc_lname, tc_cid, tc_hours)

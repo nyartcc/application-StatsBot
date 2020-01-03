@@ -12,7 +12,7 @@ def convertTuple(tup):
     return str
 
 
-def post_to_discord(last_week_hours, this_week_hours, tc_fname, tc_lname, tc_cid, tc_hours):
+def post_to_discord(prev_minutes, current_hours, tc_fname, tc_lname, tc_cid, tc_hours):
     # create embed object for webhook
     embed = DiscordEmbed(title='Weekly Statistics',
                          description='Statustics for the week of {}.{}.{}'.format(today.year, today.month, today.day), color=242424)
