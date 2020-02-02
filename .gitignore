@@ -3,3 +3,5 @@
 venv/
 Pipfil*
 test.py
+__pycache__/
+venvbackup/
