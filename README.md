@@ -1,3 +1,6 @@
+# This repo has been archived and is no longer active
+
+
 # vNew York ARTCC - Statsbot
 A many-armed bot to publish stats from the database to Slack and statistics tables.
 
